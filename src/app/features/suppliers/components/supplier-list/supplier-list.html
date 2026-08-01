@@ -1,0 +1,124 @@
+<!-- <app-search-box
+    [(searchText)]="searchText"
+    (search)="search()">
+</app-search-box> -->
+
+<app-search-box
+    placeholder="Search Suppliers"
+    [(searchText)]="searchText"
+    (searchTextChange)="search()">
+</app-search-box>
+
+@if(loading.isLoading()){
+
+<app-loading></app-loading>
+
+}
+
+@else{
+
+<table class="table table-bordered table-hover">
+
+    <thead class="table-dark">
+
+        <tr>
+
+            <th>Code</th>
+
+            <th>Company</th>
+
+            <th>Contact Person</th>
+
+            <th>Email</th>
+
+            <th>Phone</th>
+
+            <th>Status</th>
+
+            <th width="160">
+
+                Actions
+
+            </th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        @for(supplier of suppliers(); track supplier.id){
+
+        <tr>
+
+            <td>{{ supplier.supplierCode }}</td>
+
+            <td>{{ supplier.companyName }}</td>
+
+            <td>{{ supplier.contactPerson }}</td>
+
+            <td>{{ supplier.email }}</td>
+
+            <td>{{ supplier.phone }}</td>
+
+            <td>
+
+                @if(supplier.isActive){
+
+                    <span class="badge bg-success">
+
+                        Active
+
+                    </span>
+
+                }
+
+                @else{
+
+                    <span class="badge bg-danger">
+
+                        Inactive
+
+                    </span>
+
+                }
+
+            </td>
+
+            <td>
+
+                <button
+                    class="btn btn-warning btn-sm me-2"
+                    (click)="edit.emit(supplier)">
+
+                    Edit
+
+                </button>
+
+                <button
+                    class="btn btn-danger btn-sm"
+                    (click)="delete.emit(supplier)">
+
+                    Delete
+
+                </button>
+
+            </td>
+
+        </tr>
+
+        }
+
+    </tbody>
+
+</table>
+
+}
+
+<app-pagination
+    [pageNumber]="pageNumber"
+    [totalPages]="totalPages"
+    [totalRecords]="totalRecords"
+    (previous)="previousPage()"
+    (next)="nextPage()">
+</app-pagination>

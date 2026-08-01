@@ -1,0 +1,112 @@
+<app-search-box
+    placeholder="Search Category"
+    [(searchText)]="searchText"
+    (searchTextChange)="search()">
+</app-search-box>
+
+
+
+@if(loading.isLoading()){
+<app-loading></app-loading>
+
+}
+
+@else{
+
+<table class="table table-bordered table-hover">
+
+    <thead class="table-dark">
+
+        <tr>
+
+            <th>Name</th>
+
+            <th>Description</th>
+
+            <th>Status</th>
+
+            <th width="150">
+
+                Actions
+
+            </th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        @for(category of categories(); track category.id){
+
+        <tr>
+
+            <td>
+
+                {{category.name}}
+
+            </td>
+
+            <td>
+
+                {{category.description}}
+
+            </td>
+
+            <td>
+
+                @if(category.isActive){
+
+                <span class="badge bg-success">
+
+                    Active
+
+                </span>
+
+                }
+
+                @else{
+
+                <span class="badge bg-danger">
+
+                    Inactive
+
+                </span>
+
+                }
+
+            </td>
+
+            <td>
+
+                <button class="btn btn-warning btn-sm me-2" (click)="edit.emit(category)">
+
+                    Edit
+
+                </button>
+
+                <button class="btn btn-danger btn-sm" (click)="delete.emit(category)">
+
+                    Delete
+
+                </button>
+
+            </td>
+
+        </tr>
+
+        }
+
+    </tbody>
+
+</table>
+
+}
+
+<app-pagination
+    [pageNumber]="pageNumber"
+    [totalPages]="totalPages"
+    [totalRecords]="totalRecords"
+    (previous)="previousPage()"
+    (next)="nextPage()">
+</app-pagination>

@@ -1,0 +1,25 @@
+.table td,
+.table th {
+    vertical-align: middle;
+}
+
+.table th {
+    white-space: nowrap;
+}
+
+.table td:nth-child(5) {
+    font-weight: 600;
+    color: #198754;
+}
+
+.table td:nth-child(6) {
+    font-weight: 600;
+}
+
+.badge {
+    min-width: 70px;
+}
+
+.btn-sm {
+    min-width: 70px;
+}

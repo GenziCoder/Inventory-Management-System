@@ -1,0 +1,262 @@
+<form [formGroup]="form" (ngSubmit)="save()">
+
+    <div class="row">
+
+        <div class="col-md-6 mb-3">
+
+            <label class="form-label">
+
+                Product Code
+
+            </label>
+
+            <input
+                type="text"
+                class="form-control"
+                formControlName="productCode">
+
+            @if(form.controls.productCode.touched &&
+            form.controls.productCode.invalid){
+
+                <small class="text-danger">
+
+                    Product Code is required.
+
+                </small>
+
+            }
+
+        </div>
+
+        <div class="col-md-6 mb-3">
+
+            <label class="form-label">
+
+                Product Name
+
+            </label>
+
+            <input
+                type="text"
+                class="form-control"
+                formControlName="productName">
+
+            @if(form.controls.productName.touched &&
+            form.controls.productName.invalid){
+
+                <small class="text-danger">
+
+                    Product Name is required.
+
+                </small>
+
+            }
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-6 mb-3">
+
+            <label class="form-label">
+
+                Category
+
+            </label>
+
+            <select
+                class="form-select"
+                formControlName="categoryId">
+
+                <option [value]="0">
+
+                    Select Category
+
+                </option>
+
+                @for(category of categories(); track category.id){
+
+                    <option [value]="category.id">
+
+                        {{ category.name }}
+
+                    </option>
+
+                }
+
+            </select>
+
+            @if(form.controls.categoryId.touched &&
+            form.controls.categoryId.invalid){
+
+                <small class="text-danger">
+
+                    Category is required.
+
+                </small>
+
+            }
+
+        </div>
+
+        <div class="col-md-6 mb-3">
+
+            <label class="form-label">
+
+                Supplier
+
+            </label>
+
+            <select
+                class="form-select"
+                formControlName="supplierId">
+
+                <option [value]="0">
+
+                    Select Supplier
+
+                </option>
+
+                @for(supplier of suppliers(); track supplier.id){
+
+                    <option [value]="supplier.id">
+
+                        {{ supplier.companyName }}
+
+                    </option>
+
+                }
+
+            </select>
+
+            @if(form.controls.supplierId.touched &&
+            form.controls.supplierId.invalid){
+
+                <small class="text-danger">
+
+                    Supplier is required.
+
+                </small>
+
+            }
+
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-4 mb-3">
+
+            <label class="form-label">
+
+                Unit Price
+
+            </label>
+
+            <input
+                type="number"
+                class="form-control"
+                formControlName="unitPrice">
+
+        </div>
+
+        <div class="col-md-4 mb-3">
+
+            <label class="form-label">
+
+                Stock Quantity
+
+            </label>
+
+            <input
+                type="number"
+                class="form-control"
+                formControlName="stockQuantity">
+
+        </div>
+
+        <div class="col-md-4 mb-3">
+
+            <label class="form-label">
+
+                Reorder Level
+
+            </label>
+
+            <input
+                type="number"
+                class="form-control"
+                formControlName="reorderLevel">
+
+        </div>
+
+    </div>
+
+    <div class="mb-3">
+
+        <label class="form-label">
+
+            Description
+
+        </label>
+
+        <textarea
+            rows="3"
+            class="form-control"
+            formControlName="description">
+
+        </textarea>
+
+    </div>
+
+    @if(product){
+
+    <div class="form-check mb-3">
+
+        <input
+            type="checkbox"
+            class="form-check-input"
+            formControlName="isActive">
+
+        <label class="form-check-label">
+
+            Active
+
+        </label>
+
+    </div>
+
+    }
+
+    <div class="text-end">
+
+        <button
+            class="btn btn-primary"
+            type="submit"
+            [disabled]="saving()">
+
+            @if(saving()){
+
+                <span
+                    class="spinner-border spinner-border-sm me-2">
+
+                </span>
+
+                Saving...
+
+            }
+
+            @else{
+
+                Save
+
+            }
+
+        </button>
+
+    </div>
+
+</form>

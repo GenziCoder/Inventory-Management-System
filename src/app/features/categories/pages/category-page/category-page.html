@@ -1,0 +1,21 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+
+    <h2>Category Management</h2>
+
+    <button
+        class="btn btn-primary"
+        (click)="openForm()">
+
+        Add Category
+
+    </button>
+
+</div>
+
+@if(showForm()){
+
+<app-category-form [category]="selectedCategory" (saved)="onCategorySaved()"></app-category-form>
+
+}
+
+<app-category-list  [refresh]="refreshList()" (edit)="editCategory($event)"  (delete)="deleteCategory($event)"></app-category-list>

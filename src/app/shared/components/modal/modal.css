@@ -1,0 +1,53 @@
+.modal-backdrop-custom {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,.5);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 1050;
+
+}
+
+.modal-window {
+
+    width: 800px;
+
+    max-width: 95%;
+
+    background: white;
+
+    border-radius: 8px;
+
+    overflow: hidden;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,.2);
+
+}
+
+.modal-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 15px 20px;
+
+    border-bottom: 1px solid #dee2e6;
+
+}
+
+.modal-body {
+
+    padding: 20px;
+
+}

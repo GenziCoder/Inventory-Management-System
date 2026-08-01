@@ -1,0 +1,55 @@
+@if (visible) {
+
+<div class="dialog-backdrop">
+
+    <div class="dialog">
+
+        <div class="dialog-header">
+
+            <h5>{{ title }}</h5>
+
+        </div>
+
+        <div class="dialog-body">
+
+            {{ message }}
+
+        </div>
+
+        <div class="dialog-footer">
+
+            <button
+                class="btn btn-secondary"
+                (click)="close()">
+
+                Cancel
+
+            </button>
+
+            <button
+                class="btn btn-danger"
+                (click)="confirm()"
+                [disabled]="loading"
+                >  
+
+                @if(loading){
+
+                    Deleting...
+
+                }
+
+                @else{
+
+                    Delete
+
+                }
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+}

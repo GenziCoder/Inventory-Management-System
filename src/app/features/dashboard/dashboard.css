@@ -1,0 +1,19 @@
+.card{
+
+    border:none;
+
+    border-radius:10px;
+
+}
+
+.card-body{
+
+    text-align:center;
+
+}
+
+h2{
+
+    font-weight:bold;
+
+}

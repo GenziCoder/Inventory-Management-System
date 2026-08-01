@@ -1,0 +1,46 @@
+<p>product works!</p>
+<div class="container-fluid">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+
+        <h3>Products</h3>
+
+        <button
+            class="btn btn-primary"
+            (click)="addProduct()">
+
+            <i class="bi bi-plus-circle me-2"></i>
+
+            Add Product
+
+        </button>
+
+    </div>
+
+    <app-product-list
+        [refresh]="refresh()"
+        (edit)="editProduct($event)"
+        (delete)="deleteProduct($event)">
+    </app-product-list>
+
+</div>
+
+<app-modal
+    title="{{ selectedProduct ? 'Edit Product' : 'Add Product' }}"
+    [(visible)]="showProductModal">
+
+    <app-product-form
+        [product]="selectedProduct"
+        (saved)="onProductSaved()">
+    </app-product-form>
+
+</app-modal>
+
+<app-confirm-dialog
+    [(visible)]="showDeleteDialog"
+    title="Delete Product"
+    message="Are you sure you want to delete this product?"
+    confirmButtonText="Delete"
+    [loading]="deleting()"
+    (confirmed)="confirmDelete()">
+</app-confirm-dialog>

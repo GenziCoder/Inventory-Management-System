@@ -1,0 +1,126 @@
+<form [formGroup]="form">
+
+<div class="row">
+
+    <div class="col-md-6 mb-3">
+
+        <label>Supplier Code</label>
+
+        <input
+            class="form-control"
+            formControlName="supplierCode">
+
+    </div>
+
+    <div class="col-md-6 mb-3">
+
+        <label>Company Name</label>
+
+        <input
+            class="form-control"
+            formControlName="companyName">
+
+    </div>
+
+    <div class="col-md-6 mb-3">
+
+        <label>Contact Person</label>
+
+        <input
+            class="form-control"
+            formControlName="contactPerson">
+
+    </div>
+
+    <div class="col-md-6 mb-3">
+
+        <label>Email</label>
+
+        <input
+            class="form-control"
+            formControlName="email">
+
+    </div>
+
+    <div class="col-md-6 mb-3">
+
+        <label>Phone</label>
+
+        <input
+            class="form-control"
+            formControlName="phone">
+
+    </div>
+
+    <div class="col-md-6 mb-3">
+
+        <label>Address</label>
+
+        <input
+            class="form-control"
+            formControlName="address">
+
+    </div>
+
+    <div class="col-md-6 mb-3">
+
+        <label>City</label>
+
+        <input
+            class="form-control"
+            formControlName="city">
+
+    </div>
+
+    <div class="col-md-6 mb-3">
+
+        <label>State</label>
+
+        <input
+            class="form-control"
+            formControlName="state">
+
+    </div>
+
+    <div class="col-md-6 mb-3">
+
+        <label>Country</label>
+
+        <input
+            class="form-control"
+            formControlName="country">
+
+    </div>
+
+    <div class="col-md-6 mb-3">
+
+        <label>PostalCode</label>
+
+        <input
+            class="form-control"
+            formControlName="postalCode">
+
+    </div>
+
+</div>
+
+<button
+    class="btn btn-success"
+    type="button"
+    (click)="save()">
+
+    @if(saving()){
+
+        Saving...
+
+    }
+
+    @else{
+
+        Save Supplier
+
+    }
+
+</button>
+
+</form>

@@ -1,0 +1,126 @@
+<form [formGroup]="form">
+
+<div class="row">
+
+    <div class="col-md-6 mb-3">
+
+        <label>Customer Code</label>
+
+        <input
+            class="form-control"
+            formControlName="customerCode">
+
+    </div>
+
+    <div class="col-md-6 mb-3">
+
+        <label>First Name</label>
+
+        <input
+            class="form-control"
+            formControlName="firstName">
+
+    </div>
+
+    <div class="col-md-6 mb-3">
+
+        <label>Last Name</label>
+
+        <input
+            class="form-control"
+            formControlName="lastName">
+
+    </div>
+
+    <div class="col-md-6 mb-3">
+
+        <label>Email</label>
+
+        <input
+            class="form-control"
+            formControlName="email">
+
+    </div>
+
+    <div class="col-md-6 mb-3">
+
+        <label>Phone</label>
+
+        <input
+            class="form-control"
+            formControlName="phone">
+
+    </div>
+
+    <div class="col-md-6 mb-3">
+
+        <label>Address</label>
+
+        <input
+            class="form-control"
+            formControlName="address">
+
+    </div>
+
+    <div class="col-md-6 mb-3">
+
+        <label>City</label>
+
+        <input
+            class="form-control"
+            formControlName="city">
+
+    </div>
+
+    <div class="col-md-6 mb-3">
+
+        <label>State</label>
+
+        <input
+            class="form-control"
+            formControlName="state">
+
+    </div>
+
+    <div class="col-md-6 mb-3">
+
+        <label>Country</label>
+
+        <input
+            class="form-control"
+            formControlName="country">
+
+    </div>
+
+    <div class="col-md-6 mb-3">
+
+        <label>PostalCode</label>
+
+        <input
+            class="form-control"
+            formControlName="postalCode">
+
+    </div>
+
+</div>
+
+<button
+    class="btn btn-success"
+    type="button"
+    (click)="save()">
+
+    @if(saving()){
+
+        Saving...
+
+    }
+
+    @else{
+
+        Save Customer
+
+    }
+
+</button>
+
+</form>

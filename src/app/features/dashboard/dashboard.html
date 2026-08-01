@@ -1,0 +1,81 @@
+<div class="container-fluid">
+
+<h2 class="mb-4">
+
+Dashboard
+
+</h2>
+
+@if(summary()){
+
+<div class="row">
+
+<div class="col-md-3">
+
+<div class="card bg-primary text-white">
+
+<div class="card-body">
+
+<h5>Products</h5>
+
+<h2>{{summary().totalProducts}}</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card bg-success text-white">
+
+<div class="card-body">
+
+<h5>Customers</h5>
+
+<h2>{{summary().totalCustomers}}</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card bg-warning">
+
+<div class="card-body">
+
+<h5>Suppliers</h5>
+
+<h2>{{summary().totalSuppliers}}</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card bg-danger text-white">
+
+<div class="card-body">
+
+<h5>Sales</h5>
+
+<h2>{{summary().totalSales}}</h2>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+}
+
+</div>

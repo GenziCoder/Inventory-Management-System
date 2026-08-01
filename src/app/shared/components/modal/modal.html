@@ -1,0 +1,32 @@
+@if (visible) {
+
+<div class="modal-backdrop-custom">
+
+    <div class="modal-window">
+
+        <div class="modal-header">
+
+            <h5>
+
+                {{ title }}
+
+            </h5>
+
+            <button
+                class="btn-close"
+                (click)="close()">
+            </button>
+
+        </div>
+
+        <div class="modal-body">
+
+            <ng-content></ng-content>
+
+        </div>
+
+    </div>
+
+</div>
+
+}
