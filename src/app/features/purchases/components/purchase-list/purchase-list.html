@@ -1,0 +1,208 @@
+<div class="card shadow-sm">
+
+    <div class="card-header d-flex justify-content-between align-items-center">
+
+        <h5 class="mb-0">
+
+            Purchase List
+
+        </h5>
+
+        <div class="input-group" style="width:300px;">
+
+            <input
+                type="text"
+                class="form-control"
+                placeholder="Search Purchase..."
+                [(ngModel)]="search"
+                (keyup.enter)="onSearch()">
+
+            <button
+                class="btn btn-outline-primary"
+                type="button"
+                (click)="onSearch()">
+
+                <i class="bi bi-search"></i>
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="card-body">
+
+        @if(loading()){
+
+            <div class="text-center py-5">
+
+                <div class="spinner-border text-primary"></div>
+
+            </div>
+
+        }
+        @else {
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-hover align-middle">
+
+                    <thead class="table-light">
+
+                        <tr>
+
+                            <th style="width:70px">
+
+                                Id
+
+                            </th>
+
+                            <th>
+
+                                Purchase No
+
+                            </th>
+
+                            <th>
+
+                                Supplier
+
+                            </th>
+
+                            <th>
+
+                                Date
+
+                            </th>
+
+                            <th class="text-end">
+
+                                Amount
+
+                            </th>
+
+                            <th class="text-center">
+
+                                Items
+
+                            </th>
+
+                            <th style="width:140px">
+
+                                Action
+
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        @if(purchases().length === 0){
+
+                            <tr>
+
+                                <td
+                                    colspan="7"
+                                    class="text-center text-muted">
+
+                                    No purchases found.
+
+                                </td>
+
+                            </tr>
+
+                        }
+
+                        @for(purchase of purchases(); track purchase.id){
+
+                            <tr>
+
+                                <td>
+
+                                    {{purchase.id}}
+
+                                </td>
+
+                                <td>
+
+                                    {{purchase.purchaseNumber}}
+
+                                </td>
+
+                                <td>
+
+                                    {{purchase.supplierName}}
+
+                                </td>
+
+                                <td>
+
+                                    {{purchase.purchaseDate | date:'dd/MM/yyyy'}}
+
+                                </td>
+
+                                <td class="text-end">
+
+                                    {{purchase.totalAmount | number:'1.2-2'}}
+
+                                </td>
+
+                                <td class="text-center">
+
+                                    {{purchase.items.length}}
+
+                                </td>
+
+                                <td>
+
+                                    <button
+                                        class="btn btn-warning btn-sm me-2"
+                                        type="button"
+                                        (click)="edit.emit(purchase)">
+
+                                        <i class="bi bi-pencil"></i>
+
+                                    </button>
+
+                                    <button
+                                        class="btn btn-danger btn-sm"
+                                        type="button"
+                                        (click)="delete.emit(purchase)">
+
+                                        <i class="bi bi-trash"></i>
+
+                                    </button>
+
+                                </td>
+
+                            </tr>
+
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <app-pagination
+
+                [pageNumber]="pageNumber"
+
+                [totalPages]="totalPages"
+
+                [totalRecords]="totalRecords"
+
+                (previous)="previousPage()"
+
+                (next)="nextPage()">
+
+            </app-pagination>
+
+        }
+
+    </div>
+
+</div>

@@ -1,19 +1,41 @@
+// export interface CreateProduct {
+
+//     productCode: string;
+
+//     productName: string;
+
+//     categoryId: number;
+
+//     supplierId: number;
+
+//     unitPrice: number;
+
+//     stockQuantity: number;
+
+//     reorderLevel: number;
+
+//     description: string;
+
+// }
+
 export interface CreateProduct {
 
     productCode: string;
 
-    productName: string;
+    name: string;
 
-    categoryId: number;
+    description?: string;
 
-    supplierId: number;
+    purchasePrice: number;
 
-    unitPrice: number;
+    sellingPrice: number;
 
     stockQuantity: number;
 
-    reorderLevel: number;
+    minimumStock: number;
 
-    description: string;
+    barcode?: string;
+
+    categoryId: number;
 
 }

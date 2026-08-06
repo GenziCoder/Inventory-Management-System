@@ -7,6 +7,8 @@ import { CategoryPage } from './features/categories/pages/category-page/category
 import { CustomerComponent } from './features/customers/pages/customer/customer';
 import { SupplierComponent } from './features/suppliers/pages/supplier/supplier';
 import { ProductComponent } from './features/products/pages/product/product';
+import { PurchaseComponent } from './features/purchases/pages/purchase/purchase';
+import { SaleComponent } from './features/sales/pages/sale/sale';
 export const routes: Routes = [
 
    
@@ -41,14 +43,14 @@ export const routes: Routes = [
                      path: 'products',
                      component: ProductComponent
                   },
-                //  {
-                //     path: 'purchases',
-                //     component: Purchase,
-                //  },
-                //  {
-                //     path: 'sales',
-                //     component: Sale,
-                //  },
+                 {
+                    path: 'purchases',
+                    component: PurchaseComponent 
+                 },
+                 {
+                    path: 'sales',
+                    component: SaleComponent,
+                 },
                 //  {
                 //     path: 'reports',
                 //     component: Report,

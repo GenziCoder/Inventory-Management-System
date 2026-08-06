@@ -100,7 +100,6 @@ export class ProductList implements OnInit, OnChanges {
           console.log('Response:', response);
 
           this.products.set(response.data);
-
           this.pageNumber = response.pageNumber;
           this.pageSize = response.pageSize;
           this.totalPages = response.totalPages;

@@ -1,0 +1,11 @@
+.container-fluid {
+    padding: 20px;
+}
+
+.row {
+    align-items: flex-start;
+}
+
+.col-md-4 {
+    margin-bottom: 20px;
+}

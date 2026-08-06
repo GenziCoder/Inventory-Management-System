@@ -70,21 +70,24 @@ export class ProductForm implements OnChanges {
 
     productCode: ['', Validators.required],
 
-    productName: ['', Validators.required],
+    name: ['', Validators.required],
+
+    description: [''],
+    purchasePrice: [0, Validators.required],
+
+    sellingPrice: [0, Validators.required],
+
+    stockQuantity: [0, Validators.required],
+
+    minimumStock: [0, Validators.required],
+
+    barcode: [''],
+    isActive: [true],
 
     categoryId: [0, Validators.required],
 
-    supplierId: [0, Validators.required],
+    categoryName: ['']
 
-    unitPrice: [0, [Validators.required, Validators.min(0)]],
-
-    stockQuantity: [0, [Validators.required, Validators.min(0)]],
-
-    reorderLevel: [0, [Validators.required, Validators.min(0)]],
-
-    description: [''],
-
-    isActive: [true]
 
   });
 
@@ -110,16 +113,7 @@ export class ProductForm implements OnChanges {
       this.form.reset({
 
         categoryId: 0,
-
-        supplierId: 0,
-
-        unitPrice: 0,
-
-        stockQuantity: 0,
-
-        reorderLevel: 0,
-
-        isActive: true
+        categoryName: ''
 
       });
 
@@ -132,7 +126,7 @@ export class ProductForm implements OnChanges {
   loadCategories() {
 
     this.categoryService
-      .getAll('', 1, 1000)
+      .getAll('', 1, 10)
       .subscribe({
 
         next: response => {
@@ -148,7 +142,7 @@ export class ProductForm implements OnChanges {
   loadSuppliers() {
 
     this.supplierService
-      .getAll('', 1, 1000)
+      .getAll('', 1, 10)
       .subscribe({
 
         next: response => {
@@ -173,23 +167,26 @@ export class ProductForm implements OnChanges {
 
     if (this.product) {
 
+      const value = this.form.getRawValue();
+
       const model: UpdateProduct = {
 
-        productName: this.form.getRawValue().productName!,
+        name: value.name!,
 
-        categoryId: this.form.getRawValue().categoryId!,
+        description: value.description ?? '',
 
-        supplierId: this.form.getRawValue().supplierId!,
+        purchasePrice: Number(value.purchasePrice),
 
-        unitPrice: this.form.getRawValue().unitPrice!,
+        sellingPrice: Number(value.sellingPrice),
 
-        stockQuantity: this.form.getRawValue().stockQuantity!,
+        stockQuantity: Number(value.stockQuantity),
 
-        reorderLevel: this.form.getRawValue().reorderLevel!,
+        minimumStock: Number(value.minimumStock),
 
-        description: this.form.getRawValue().description!,
+        barcode: value.barcode ?? '',
 
-        isActive: this.form.getRawValue().isActive!
+        categoryId: Number(value.categoryId),
+        isActive: value.isActive ?? true
 
       };
 
@@ -213,25 +210,31 @@ export class ProductForm implements OnChanges {
     }
     else {
 
+      const value = this.form.getRawValue();
+
       const model: CreateProduct = {
 
-        productCode: this.form.value.productCode!,
+        productCode: value.productCode!,
 
-        productName: this.form.value.productName!,
+        name: value.name!,
 
-        categoryId: this.form.value.categoryId!,
+        description: value.description ?? '',
 
-        supplierId: this.form.value.supplierId!,
+        purchasePrice: Number(value.purchasePrice),
 
-        unitPrice: this.form.value.unitPrice!,
+        sellingPrice: Number(value.sellingPrice),
 
-        stockQuantity: this.form.value.stockQuantity!,
+        stockQuantity: Number(value.stockQuantity),
 
-        reorderLevel: this.form.value.reorderLevel!,
+        minimumStock: Number(value.minimumStock),
 
-        description: this.form.value.description!
+        barcode: value.barcode ?? '',
+
+        categoryId: Number(value.categoryId)
 
       };
+
+
 
       this.saving.set(true);
 
@@ -248,19 +251,30 @@ export class ProductForm implements OnChanges {
 
             this.form.reset({
 
+              productCode: '',
+
+              name: '',
+
               categoryId: 0,
 
-              supplierId: 0,
+              purchasePrice: 0,
 
-              unitPrice: 0,
+              sellingPrice: 0,
 
               stockQuantity: 0,
 
-              reorderLevel: 0,
+              minimumStock: 0,
 
-              isActive: true
+              barcode: '',
+
+              description: ''
 
             });
+
+          },
+          error: message => {
+
+            this.toastr.error(message.error?.title || 'Failed to create product');
 
           }
 

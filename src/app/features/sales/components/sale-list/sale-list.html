@@ -1,0 +1,103 @@
+<table class="table table-bordered table-hover align-middle">
+
+    <thead class="table-light">
+
+        <tr>
+
+            <th width="80">Id</th>
+
+            <th width="170">Invoice No</th>
+
+            <th>Customer</th>
+
+            <th width="140">Sale Date</th>
+
+            <th width="150" class="text-end">Total</th>
+
+            <th width="170" class="text-center">Action</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        @if(sales.length === 0){
+
+            <tr>
+
+                <td colspan="6" class="text-center py-4">
+
+                    No Sales Found
+
+                </td>
+
+            </tr>
+
+        }
+
+        @else{
+
+            @for(sale of sales; track sale.id){
+
+                <tr>
+
+                    <td>
+
+                        {{sale.id}}
+
+                    </td>
+
+                    <td>
+
+                        {{sale.invoiceNumber}}
+
+                    </td>
+
+                    <td>
+
+                        {{sale.customerName}}
+
+                    </td>
+
+                    <td>
+
+                        {{sale.saleDate | date:'dd-MMM-yyyy'}}
+
+                    </td>
+
+                    <td class="text-end">
+
+                        {{sale.totalAmount | number:'1.2-2'}}
+
+                    </td>
+
+                    <td class="text-center">
+
+                        <button
+                            class="btn btn-warning btn-sm me-2"
+                            (click)="onEdit(sale)">
+
+                            Edit
+
+                        </button>
+
+                        <button
+                            class="btn btn-danger btn-sm"
+                            (click)="onDelete(sale.id)">
+
+                            Delete
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+            }
+
+        }
+
+    </tbody>
+
+</table>

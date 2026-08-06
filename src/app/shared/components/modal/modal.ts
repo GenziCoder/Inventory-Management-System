@@ -32,5 +32,6 @@ export class ModalComponent {
     this.visibleChange.emit(false);
 
   }
+  
 
 }

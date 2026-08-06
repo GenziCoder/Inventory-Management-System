@@ -1,19 +1,14 @@
 export interface UpdateProduct {
 
-    productName: string;
-
+    name: string;
+    description: string;
+    purchasePrice: number;
+    sellingPrice: number;
+    stockQuantity: number;
+    minimumStock: number;
+    barcode: string;
+    isActive: boolean;
     categoryId: number;
 
-    supplierId: number;
-
-    unitPrice: number;
-
-    stockQuantity: number;
-
-    reorderLevel: number;
-
-    description: string;
-
-    isActive: boolean;
 
 }

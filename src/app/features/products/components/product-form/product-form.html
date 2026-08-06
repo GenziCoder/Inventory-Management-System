@@ -5,9 +5,7 @@
         <div class="col-md-6 mb-3">
 
             <label class="form-label">
-
                 Product Code
-
             </label>
 
             <input
@@ -18,11 +16,9 @@
             @if(form.controls.productCode.touched &&
             form.controls.productCode.invalid){
 
-                <small class="text-danger">
-
-                    Product Code is required.
-
-                </small>
+            <small class="text-danger">
+                Product Code is required.
+            </small>
 
             }
 
@@ -31,24 +27,20 @@
         <div class="col-md-6 mb-3">
 
             <label class="form-label">
-
                 Product Name
-
             </label>
 
             <input
                 type="text"
                 class="form-control"
-                formControlName="productName">
+                formControlName="name">
 
-            @if(form.controls.productName.touched &&
-            form.controls.productName.invalid){
+            @if(form.controls.name.touched &&
+            form.controls.name.invalid){
 
-                <small class="text-danger">
-
-                    Product Name is required.
-
-                </small>
+            <small class="text-danger">
+                Product Name is required.
+            </small>
 
             }
 
@@ -61,28 +53,22 @@
         <div class="col-md-6 mb-3">
 
             <label class="form-label">
-
                 Category
-
             </label>
 
             <select
                 class="form-select"
                 formControlName="categoryId">
 
-                <option [value]="0">
-
+                <option [ngValue]="0">
                     Select Category
-
                 </option>
 
                 @for(category of categories(); track category.id){
 
-                    <option [value]="category.id">
-
-                        {{ category.name }}
-
-                    </option>
+                <option [ngValue]="category.id">
+                    {{ category.name }}
+                </option>
 
                 }
 
@@ -91,11 +77,9 @@
             @if(form.controls.categoryId.touched &&
             form.controls.categoryId.invalid){
 
-                <small class="text-danger">
-
-                    Category is required.
-
-                </small>
+            <small class="text-danger">
+                Category is required.
+            </small>
 
             }
 
@@ -104,43 +88,13 @@
         <div class="col-md-6 mb-3">
 
             <label class="form-label">
-
-                Supplier
-
+                Barcode
             </label>
 
-            <select
-                class="form-select"
-                formControlName="supplierId">
-
-                <option [value]="0">
-
-                    Select Supplier
-
-                </option>
-
-                @for(supplier of suppliers(); track supplier.id){
-
-                    <option [value]="supplier.id">
-
-                        {{ supplier.companyName }}
-
-                    </option>
-
-                }
-
-            </select>
-
-            @if(form.controls.supplierId.touched &&
-            form.controls.supplierId.invalid){
-
-                <small class="text-danger">
-
-                    Supplier is required.
-
-                </small>
-
-            }
+            <input
+                type="text"
+                class="form-control"
+                formControlName="barcode">
 
         </div>
 
@@ -151,24 +105,33 @@
         <div class="col-md-4 mb-3">
 
             <label class="form-label">
-
-                Unit Price
-
+                Purchase Price
             </label>
 
             <input
                 type="number"
                 class="form-control"
-                formControlName="unitPrice">
+                formControlName="purchasePrice">
 
         </div>
 
         <div class="col-md-4 mb-3">
 
             <label class="form-label">
+                Selling Price
+            </label>
 
+            <input
+                type="number"
+                class="form-control"
+                formControlName="sellingPrice">
+
+        </div>
+
+        <div class="col-md-4 mb-3">
+
+            <label class="form-label">
                 Stock Quantity
-
             </label>
 
             <input
@@ -178,18 +141,20 @@
 
         </div>
 
+    </div>
+
+    <div class="row">
+
         <div class="col-md-4 mb-3">
 
             <label class="form-label">
-
-                Reorder Level
-
+                Minimum Stock
             </label>
 
             <input
                 type="number"
                 class="form-control"
-                formControlName="reorderLevel">
+                formControlName="minimumStock">
 
         </div>
 
@@ -198,38 +163,16 @@
     <div class="mb-3">
 
         <label class="form-label">
-
             Description
-
         </label>
 
         <textarea
             rows="3"
             class="form-control"
             formControlName="description">
-
         </textarea>
 
     </div>
-
-    @if(product){
-
-    <div class="form-check mb-3">
-
-        <input
-            type="checkbox"
-            class="form-check-input"
-            formControlName="isActive">
-
-        <label class="form-check-label">
-
-            Active
-
-        </label>
-
-    </div>
-
-    }
 
     <div class="text-end">
 
@@ -240,18 +183,15 @@
 
             @if(saving()){
 
-                <span
-                    class="spinner-border spinner-border-sm me-2">
+            <span class="spinner-border spinner-border-sm me-2"></span>
 
-                </span>
-
-                Saving...
+            Saving...
 
             }
 
             @else{
 
-                Save
+            Save
 
             }
 

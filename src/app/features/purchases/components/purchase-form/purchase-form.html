@@ -1,0 +1,281 @@
+<form [formGroup]="form" (ngSubmit)="save()">
+
+    <!-- Supplier & Date -->
+
+    <div class="row">
+
+        <div class="col-md-6 mb-3">
+
+            <label class="form-label">
+
+                Supplier <span class="text-danger">*</span>
+
+            </label>
+
+            <select
+                class="form-select"
+                formControlName="supplierId"
+                [class.is-invalid]="isInvalid('supplierId')">
+
+                <option [ngValue]="null">
+
+                    Select Supplier
+
+                </option>
+
+                @for(supplier of suppliers(); track supplier.id){
+
+                    <option [ngValue]="supplier.id">
+
+                        {{supplier.companyName}}
+
+                    </option>
+
+                }
+
+            </select>
+
+             @if (isInvalid('supplierId')) {
+
+             <div class="invalid-feedback">
+            Supplier is required.
+              </div>
+            }
+        </div>
+
+        <div class="col-md-6 mb-3">
+
+            <label class="form-label">
+
+                Purchase Date <span class="text-danger">*</span>
+
+            </label>
+
+            <input
+                type="date"
+                class="form-control"
+                formControlName="purchaseDate"
+                [class.is-invalid]="isInvalid('purchaseDate')">
+                  @if (isInvalid('purchaseDate')) {
+
+                <div class="invalid-feedback">
+                    Purchase Date is required.
+                </div>
+
+             }
+        </div>
+
+    </div>
+
+    <!-- Remarks -->
+
+    <div class="mb-3">
+
+        <label class="form-label">
+
+            Remarks
+
+        </label>
+
+        <textarea
+            rows="2"
+            class="form-control"
+            formControlName="remarks">
+
+        </textarea>
+
+    </div>
+
+    <hr>
+
+    <h5 class="mb-3">
+
+        Purchase Items
+
+    </h5>
+
+    <div formArrayName="items">
+
+        @for(item of items.controls; track $index){
+
+        <div
+            class="row mb-3"
+            [formGroupName]="$index">
+
+            <!-- Product -->
+
+            <div class="col-md-4">
+
+                <label class="form-label">
+
+                    Product
+
+                </label>
+
+                <select
+                    class="form-select"
+                    formControlName="productId"
+                    (change)="onProductChange($index)">
+
+                    <option [ngValue]="null">
+
+                        Select Product
+
+                    </option>
+
+                    @for(product of products(); track product.id){
+
+                        <option [ngValue]="product.id"
+                        [disabled]="isProductSelected(product.id, $index)">
+
+                            {{product.name}}
+
+                        </option>
+
+                    }
+
+                </select>
+
+            </div>
+
+            <!-- Quantity -->
+
+            <div class="col-md-2">
+
+                <label class="form-label">
+
+                    Qty
+
+                </label>
+
+                <input
+                    type="number"
+                    class="form-control"
+                    formControlName="quantity"
+                    min="1"
+                    (input)="onQuantityChange($index)">
+
+            </div>
+
+            <!-- Purchase Price -->
+
+            <div class="col-md-2">
+
+                <label class="form-label">
+
+                    Price
+
+                </label>
+
+                <input
+                    type="number"
+                    class="form-control"
+                    formControlName="unitPrice"
+                    min="0"
+                    (input)="onPriceChange($index)">
+
+            </div>
+
+            <!-- Total -->
+
+            <div class="col-md-2">
+
+                <label class="form-label">
+
+                    Total
+
+                </label>
+
+                <input
+                    type="number"
+                    class="form-control"
+                    formControlName="totalPrice"
+                    readonly>
+
+            </div>
+
+            <!-- Remove -->
+
+            <div class="col-md-2 d-flex align-items-end">
+
+                <button
+                    type="button"
+                    class="btn btn-danger w-100"
+                    (click)="removeItem($index)">
+
+                    Remove
+
+                </button>
+
+            </div>
+
+        </div>
+
+        }
+
+    </div>
+
+    <div class="mb-3">
+
+        <button
+            type="button"
+            class="btn btn-success"
+            (click)="addItem()">
+
+            + Add Item
+
+        </button>
+
+    </div>
+
+    <hr>
+
+    <div class="row">
+
+        <div class="col-md-9 text-end">
+
+            <h5>
+
+                Grand Total
+
+            </h5>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <input
+                class="form-control fw-bold text-end"
+                [value]="grandTotal() | number:'1.2-2'"
+                readonly>
+
+        </div>
+
+    </div>
+
+    <div class="text-end mt-4">
+
+        <button
+            class="btn btn-primary"
+            type="submit"
+            [disabled]="saving() || form.invalid">
+
+            @if(saving()){
+
+                <span class="spinner-border spinner-border-sm me-2"></span>
+
+                Saving...
+
+            }
+
+            @else{
+
+                Save Purchase
+
+            }
+
+        </button>
+
+    </div>
+
+</form>
